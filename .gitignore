@@ -1,0 +1,5 @@
+__pycache__/
+*.pyc
+data/tradealerts.db
+data/backtest_trades.csv
+data/backtest_report.html
