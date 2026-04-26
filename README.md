@@ -23,10 +23,25 @@ A ready-to-run Python trading research bot for:
 - It is not investment advice.
 - It does not guarantee profit.
 
-## Install
+## Installation
+### macOS/Linux
 ```bash
 python -m venv .venv
 source .venv/bin/activate
+pip install -e .[dev]
+```
+
+### Windows PowerShell
+```powershell
+python -m venv .venv
+.\.venv\Scripts\Activate.ps1
+pip install -e .[dev]
+```
+
+### Windows CMD
+```cmd
+python -m venv .venv
+.venv\Scripts\activate.bat
 pip install -e .[dev]
 ```
 
@@ -35,6 +50,7 @@ pip install -e .[dev]
 cp .env.example .env
 # edit .env
 ```
+(Windows PowerShell: `copy .env.example .env`)
 
 ## Run modes
 ```bash
@@ -82,11 +98,26 @@ Live execution only proceeds when **all** checks pass:
 All win rates are reported as historical backtest / paper / live observed performance only. They are not predictions.
 
 ## Run tests
+### macOS/Linux
 ```bash
-pytest
+PYTHONPATH=src pytest -q
+```
+
+### Windows PowerShell
+```powershell
+$env:PYTHONPATH = "src"
+python -m pytest -q
+```
+
+### Windows CMD
+```cmd
+set PYTHONPATH=src
+python -m pytest -q
 ```
 
 ## Troubleshooting
+- **PowerShell activate error**: use `\.venv\Scripts\Activate.ps1` (note backslash + `.ps1`), not a bash-style `source` command.
+- **PowerShell `PYTHONPATH=src` error**: PowerShell syntax is `$env:PYTHONPATH = "src"`.
 - No signals: lower relative-volume threshold or use richer market data.
 - Discord failures: verify webhook URL.
 - Live blocked: inspect status reason; safety gate intentionally strict.
